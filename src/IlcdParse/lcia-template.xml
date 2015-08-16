@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><?xml-stylesheet type='text/xsl' href='../../stylesheets/lciamethod2html.xsl'?>
+<LCIAMethodDataSet xmlns:common="http://lca.jrc.it/ILCD/Common" xmlns="http://lca.jrc.it/ILCD/LCIAMethod" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1" xsi:schemaLocation="http://lca.jrc.it/ILCD/LCIAMethod ../../schemas/ILCD_LCIAMethodDataSet.xsd">
+    <LCIAMethodInformation>
+        <dataSetInformation>
+            <common:UUID></common:UUID>
+            <common:name xml:lang="en"></common:name>
+            <methodology></methodology>
+            <impactCategory></impactCategory>
+            <impactIndicator></impactIndicator>
+            <common:generalComment xml:lang="en"></common:generalComment>
+        </dataSetInformation>
+        <time>
+            <referenceYear xml:lang="en"></referenceYear>
+            <duration xml:lang="en"></duration>
+        </time>
+        <geography>
+            <interventionLocation></interventionLocation>
+            <impactLocation></impactLocation>
+            <geographicalRepresentativenessDescription xml:lang="en"></geographicalRepresentativenessDescription>
+        </geography>
+    </LCIAMethodInformation>
+    <modellingAndValidation>
+        <useAdviceForDataSet xml:lang="en">Converted from TRACI 2.0 CFs in GaBi 6. Use with caution.</useAdviceForDataSet>
+        <LCIAMethodNormalisationAndWeighting>
+            <typeOfDataSet></typeOfDataSet>
+            <LCIAMethodPrinciple></LCIAMethodPrinciple>
+            <deviationsFromLCIAMethodPrinciple xml:lang="en">None</deviationsFromLCIAMethodPrinciple>
+            <normalisation>false</normalisation>
+            <weighting>false</weighting>
+        </LCIAMethodNormalisationAndWeighting>
+    </modellingAndValidation>
+    <administrativeInformation>
+        <common:commissionerAndGoal>
+            <common:project xml:lang="en">Mapping from GaBi 6 implementation of TRACI 2.0 to ILCD was performed in support of the CalRecycle Used Oil LCA Online Tool Project (State of California Contract DRR-13026).</common:project>
+            <common:intendedApplications xml:lang="en">Objective was to replicate quantitative results developed in CalRecycle Used Oil LCA project (State of California Contract DRR-10063), pursuant to Senate Bill 546 of 2009 (Lowenthal).</common:intendedApplications>
+        </common:commissionerAndGoal>
+        <publicationAndOwnership>
+            <common:dateOfLastRevision>2015-08-30T00:00:00</common:dateOfLastRevision>
+            <common:dataSetVersion>01.00.000</common:dataSetVersion>
+            <common:workflowAndPublicationStatus>Working data set.</common:workflowAndPublicationStatus>
+            <common:copyright>true</common:copyright>
+            <common:accessRestrictions xml:lang="en">The data set can be used free of charge by anybody to perform LCA studies, to distribute it to third parties, to convert it to other formats, to develop own data sets etc. </common:accessRestrictions>
+        </publicationAndOwnership>
+    </administrativeInformation>
+    <characterisationFactors>
+    </characterisationFactors>
+</LCIAMethodDataSet>
