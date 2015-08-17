@@ -120,16 +120,22 @@ def convertProcessToLcia(O,p):
 
     return L
             
-def main(argv):
-    O = IlcdArchive(argv[0])
-    Ps = O.listFiles('Process')
-    if len(argv)>1:
-        Ps = Ps[argv[1] - 1 : argv[1] ] # slice so that we still end up with a list
-    for p in Ps:
-        print '=='+p+'=='
-        L = convertProcessToLcia(O, p)
-    O.saveIlcdEntity(L)
-    return L
+def main(archive,mylist=None):
+    O = IlcdArchive(archive)
+    if mylist is None:
+        for i in enumerate():
+            print '=='+i[1]+'=='
+            L = convertProcessToLcia(O, i[1])
+            O.saveIlcdEntity(L)
+            
+    else:
+        Ps = O.listFiles('Process')
+        for i in mylist:
+            p = Ps[i-1]
+            print '=='+p+'=='
+            L = convertProcessToLcia(O, p)
+            O.saveIlcdEntity(L)
+            
 
 if __name__ == '__main__':
     """
