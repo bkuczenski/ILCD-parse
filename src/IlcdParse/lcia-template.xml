@@ -9,6 +9,8 @@
             <impactIndicator></impactIndicator>
             <common:generalComment xml:lang="en"></common:generalComment>
         </dataSetInformation>
+        <quantitativeReference>
+        </quantitativeReference>
         <time>
             <referenceYear xml:lang="en"></referenceYear>
             <duration xml:lang="en"></duration>

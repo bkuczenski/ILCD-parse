@@ -1,2 +1,2 @@
 
-import ilcdArchive
+import IlcdArchive, IlcdEntity

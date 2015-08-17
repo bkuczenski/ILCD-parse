@@ -6,10 +6,10 @@ Created on Jul 24, 2015
 
 import os
 import uuid
-from IlcdParse.ilcdEntity import ilcdEntity
+from .IlcdEntity import IlcdEntity
 
 
-class ilcdArchive(object):
+class IlcdArchive(object):
     '''
     Stores a reference to an ILCD archive directory structure.
     '''
@@ -28,21 +28,23 @@ class ilcdArchive(object):
         return os.path.join(self.root,'ILCD',self.typeDirs[datatype])
     
     def listFiles(self, datatype):
-        for f in os.listdir(self.dataPath(datatype)):
-            print f
+        Fs = os.listdir(self.dataPath(datatype))
+        #for f in Fs:
+        #    print f
+        return Fs
+            
         
     def createLciaFromTemplate(self,template='lcia-template.xml'):
-        T=ilcdEntity.parse(template)
+        T=IlcdEntity(template)
         if T.dataType() != 'LCIAMethod':
             print 'Input file is not an LCIAMethod data set'
             return []
-        
         my_uuid=uuid.uuid4() # create new random UUID
         T.uuid(my_uuid)
         return T
 
     def saveIlcdEntity(self, T):
-        fname = str(T.uuid) + '.xml'
+        fname = str(T.uuid()) + '.xml'
         savepath = os.path.join(self.dataPath(T.dataType()),fname)
         try: 
             T.write(savepath)
@@ -60,17 +62,16 @@ class ilcdArchive(object):
         """
         matches = []
         name = str(uid)+'.xml'
-        for _, path in self.typeDirs:
+        for path in self.typeDirs.iterkeys():
             if name in os.listdir(self.dataPath(path)):
                 matches.append(os.path.join(self.dataPath(path), name))
         
         if len(matches)==1:
-            return ilcdEntity.parse(matches[0])
+            return IlcdEntity(matches[0])
         else:
             print '{0} matches found.'.format(len(matches))
             return []
 
-            
             
             
                 

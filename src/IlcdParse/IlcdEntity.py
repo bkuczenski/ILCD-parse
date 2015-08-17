@@ -8,31 +8,47 @@ import lxml.etree as ET
 import re
 import uuid
 
-class ilcdEntity(ET):
+class IlcdEntity(object):
     '''
     classdocs
     '''
+    
     def dataType(self):
         """extracts the data type from the XML root element"""
         R=self.getroot()
         return re.sub(r'{([^}]+)}(.*)DataSet$',r'\2',R.tag, count=1)
 
-    def uuid(self, my_uuid=''):
+    def El(self, el, ns=None):
+        R=self.getroot()
+        return R.find('.//{0}{1}'.format('{' + R.nsmap[ns] + '}',el))
+
+    def Els(self, el, ns=None):
+        R=self.getroot()
+        return R.findall('.//{0}{1}'.format('{' + R.nsmap[ns] + '}',el))
+
+    def commonEl(self, el):
+        return self.El(el, 'common')
+
+    def uuid(self, my_uuid=None):
         """ 
         without an argument, query and return the UUID
         with an argument, set the UUID
         """
-        R=self.getroot()
-        if my_uuid.empty():
-            return uuid.UUID(R.find('.//common:UUID', R.nsmap).text)
+        uel = self.commonEl('UUID')
+        if my_uuid==None:
+            return uuid.UUID(uel.text)
+        elif isinstance(my_uuid,uuid.UUID):
+            uel.text = str(my_uuid)
+            return my_uuid
         else:
             try:
-                val = uuid.UUID(my_uuid)
+                val = uuid.UUID(my_uuid,)
             except:
+                print my_uuid
                 print 'Not a valid UUID'
                 return False
 
-            R.find('.//common:UUID', R.nsmap).text = str(val)
+            uel.text = str(val)
             return val
 
     def version(self, my_version=[]):
@@ -68,4 +84,23 @@ class ilcdEntity(ET):
         ver[2]='{0:03}'.format(int(ver[2])+1)
         R.find('.//common:dataSetVersion', R.nsmap).text = '.'.join(ver)
 
+    def getroot(self):
+        return self.xmlfile.getroot()
+    
+    def write(self, savepath):
+        with open(savepath, 'wb') as f:
+            self.xmlfile.write(f, pretty_print=True)
+
+    def __init__(self, filepath, datatype=None):
+        """
+        Instantiate a new ILCD entity from an XML file.
+        Optionally specify expected data type and return error if types don't match
+        """
+        parser = ET.XMLParser(remove_blank_text=True)
+        self.xmlfile = ET.parse(filepath,parser)
+        if datatype != None:
+            if self.dataType() != datatype:
+                raise ValueError
+        
+        
         

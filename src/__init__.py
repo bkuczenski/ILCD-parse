@@ -1,3 +1,3 @@
 import IlcdParse
-from IlcdParse import ilcdArchive
-from IlcdParse import ilcdEntity
+from IlcdParse import IlcdArchive
+from IlcdParse import IlcdEntity
