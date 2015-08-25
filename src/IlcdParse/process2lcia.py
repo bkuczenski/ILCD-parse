@@ -123,7 +123,7 @@ def convertProcessToLcia(O,p):
 def main(archive,mylist=None):
     O = IlcdArchive(archive)
     if mylist is None:
-        for i in enumerate():
+        for i in enumerate(O.listFiles('Process')):
             print '=='+i[1]+'=='
             L = convertProcessToLcia(O, i[1])
             O.saveIlcdEntity(L)
